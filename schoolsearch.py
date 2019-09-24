@@ -1,34 +1,3 @@
-class Student:
-    stLastName = ""
-    stFirstName = ""
-    grade = 0
-    classroom = 0
-    bus = 0
-    gpa = 0.0
-    tLastName = ""
-    tFirstName = ""
-
-    def __init__(self, line):
-        data = line.split(",")
-        self.stLastName = data[0]
-        self.stFirstName = data[1]
-        self.grade = int(data[2])
-        self.classroom = int(data[3])
-        self.bus = int(data[4])
-        self.gpa = float(data[5])
-        self.tLastName = data[6]
-        self.tFirstName = data[7]
-
-
-students = []
-
-
-def parsefile():
-    file = open("students.txt", 'r')
-    for line in file:
-        students.append(Student(line))
-
-
 def student_command(user_input):
     parsed_input = user_input.strip().split(" ")
     if len(parsed_input) != 1:
@@ -107,11 +76,41 @@ def grade_command(user_input):
 
 
 def bus_command(user_input):
-    return
+    parsed_input = user_input.strip().split(" ")
+    if len(parsed_input) != 1:
+        return
+
+    bus = parsed_input[0]
+
+    file = open("students.txt", 'r')
+    for line in file:
+        data = line.strip().split(",")
+        if data[4] == bus:
+            print(data[0]+", "+data[1] + ", " + data[2] + ", " + data[3])
+    file.close()
 
 
+# in-progress
 def average_command(user_input):
-    return
+    parsed_input = user_input.strip().split(" ")
+    if len(parsed_input) != 1:
+        return
+
+    grade = parsed_input[0]
+
+    total_gpa = 0
+    num_students = 0
+
+    file = open("students.txt", 'r')
+    for line in file:
+        data = line.strip().split(",")
+        if data[2] == grade:
+            total_gpa += float(data[5])
+            num_students += 1
+    file.close()
+
+    if num_students != 0:
+        print(grade + ", " + str(round(total_gpa/num_students, 2)))
 
 
 def info_command():
@@ -166,9 +165,7 @@ def parseinstruction(userinput):
         return
 
 
-
 def main():
-    parsefile()
     while 1:
         userinput = input()
         parseinstruction(userinput)
