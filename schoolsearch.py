@@ -1,3 +1,4 @@
+
 class student:
     stLastName = ""
     stFirstName = ""
@@ -36,3 +37,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
