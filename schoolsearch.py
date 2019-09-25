@@ -1,9 +1,17 @@
-def student_command(user_input):
-    parsed_input = user_input.strip().split(" ")
-    if len(parsed_input) != 1:
-        return
+def student_command_with_b(last_name):
+    try:
+        file = open("students.txt", 'r')
+    except IOError:
+        exit(1)
 
-    last_name = parsed_input[0]
+    for line in file:
+        data = line.strip().split(",")
+        if data[0] == last_name:
+            print(data[0]+","+data[1]+","+data[4])
+    file.close()
+
+
+def student_command_without_b(last_name):
     try:
         file = open("students.txt", 'r')
     except IOError:
@@ -14,6 +22,17 @@ def student_command(user_input):
         if data[0] == last_name:
             print(data[0]+","+data[1]+","+data[2]+","+data[3]+","+data[6]+","+data[7])
     file.close()
+
+
+def student_command(user_input):
+    parsed_input = user_input.strip().split(" ")
+
+    if len(parsed_input) == 1:
+        student_command_without_b(parsed_input[0])
+
+    if len(parsed_input) == 2:
+        if parsed_input[1] == "B" or parsed_input[1] == "Bus":
+            student_command_with_b(parsed_input[0])
 
 
 def teacher_command(user_input):
