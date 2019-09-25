@@ -168,20 +168,21 @@ def main():
         parsed_input = parse_input(user_input)
         entry = parsed_input[0]
 
-        if len(parsed_input) == 2:
-            if entry == "S" or entry == "Student":
-                student_command(parsed_input[1])
-            elif entry == 'T' or entry == "Teacher":
-                teacher_command(parsed_input[1])
-            elif entry == 'B' or entry == "Bus":
-                bus_command(parsed_input[1])
-            elif entry == 'G' or entry == "Grade":
-                grade_command(parse_input[1])
-            elif entry == 'A' or entry == "Average":
-                average_command(parsed_input[1])
+        if len(parsed_input) >= 2:
+           if entry == "S" or entry == "Student":
+              student_command(parsed_input[1])
+           elif entry == 'T' or entry == "Teacher":
+              teacher_command(parsed_input[1])
+           elif entry == 'B' or entry == "Bus":
+              bus_command(parsed_input[1])
+           elif entry == 'G' or entry == "Grade":
+              grade_command(parse_input[1])
+           elif entry == 'A' or entry == "Average":
+              average_command(parsed_input[1])
         elif entry == 'I' or entry == "Info":
-            info_command()
-
+           info_command()
+              
+    return
 
 if __name__ == '__main__':
    main()
@@ -239,5 +240,4 @@ def main():
 #karla checking push
 if __name__ == "__main__":
     main()
-    '''
-
+'''

@@ -17,52 +17,62 @@ isEqual(){
 #Tests Requirements R3, R4
 #short form command name, existing student
 #expected output: Input a search command: HAVIR,BOBBIE,2,108,HAMER,GAVIN
-testnum=1
-expected_output="Input a search command: HAVIR,BOBBIE,2,108,HAMER,GAVIN" 
-output=$(printf 'S: HAVIR\n' | python3 schoolsearch.py)
-isEqual "$expected_output" "$output" "$testnum"
 
 #TC-2
 #Tests Requirements R3, R4
 #short form command name, non-existing student
 #expected output: <empty line>
-testnum=2
-expected_output="Input a search command: "
-output=$(printf 'S: NEMO\n' | python3 schoolsearch.py)
-isEqual "$expected_output" "$output" "$testnum"
 
 #TC-3
 #Tests Requirements R3, R13
 #quit command
 #expected output: program terminates
-testnum=3
-expected_output="Input a search command: "
-output=$(printf 'Q' | python3 schoolsearch.py)
-isEqual "$expected_output" "$output" "$testnum"
 
 #TC-4
 #Tests Requirements R3, R4
 #long form command name, existing student
 #expected output: Input a search command: HAVIR,BOBBIE,2,108,HAMER,GAVIN
-testnum=4
-expected_output="Input a search command: HAVIR,BOBBIE,2,108,HAMER,GAVIN" 
-output=$(printf 'Student: HAVIR\n' | python3 schoolsearch.py)
-isEqual "$expected_output" "$output" "$testnum"
 
 #TC-5
 #Tests Requirements R3, R5
 #short form command name, existing student with short form bus route
 #expected output: Input a search command: HAVIR,BOBBIE,0
-testnum=5
-expected_output="Input a search command: HAVIR,BOBBIE,0"
-output=$(printf 'Student: HAVIR B' | python3 schoolsearch.py)
-isEqual "$expected_output" "$output" "$testnum"
 
-#TC-5
+#TC-6
 #Tests Requirements R3, R5
 #short form command name, existing student with long form bus route
-#expected output: Input a search command: HAVIR,BOBBIE,0
-testnum=6
-expected_output="Input a search command: HAVIR,BOBBIE,0"
-output=$(printf 'Student: HAVIR Bus' | python3 schoolsearch.py)
-isEqual "$expected_output" "$output" "$testnum"
+#expected output: HAVIR,BOBBIE,0
+
+#TC-7
+#Tests Requirement R3, R6
+#short form command name, existing student
+#expected output: 
+#LIBRANDI, TODD
+#HAVIR,BOBBIE
+#SARAO,DIEDRA
+#VANCOTT,MIKE
+#WICINSKY,TERESE
+#KOZOLA,BUSTER
+#MULLINGS,LEIGHANN
+#BUSSMANN,BILLY
+#BERBES,DICK
+#MULGREW,RANDELL
+#TOWLEY,LANE
+
+#TC-8
+#Tests Requirement R3, R6
+#long form command name, existing student
+#expected output:
+#LIBRANDI, TODD
+#HAVIR,BOBBIE
+#SARAO,DIEDRA
+#VANCOTT,MIKE
+#WICINSKY,TERESE
+#KOZOLA,BUSTER
+#MULLINGS,LEIGHANN
+#BUSSMANN,BILLY
+#BERBES,DICK
+#MULGREW,RANDELL
+#TOWLEY,LANE
+
+
