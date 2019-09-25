@@ -4,7 +4,6 @@ def student_command(user_input):
         return
 
     last_name = parsed_input[0]
-
     file = open("students.txt", 'r')
     for line in file:
         data = line.strip().split(",")
@@ -121,6 +120,39 @@ def quit_command():
     return
 
 
+def parse_input(input_string):
+   parsed = input_string.split(':')
+   return parsed
+
+def main():
+   entry = "q"
+   while entry != "Q" and  entry != "Quit":
+      user_input = input ("Input a search command: ")
+      parsed_input = parse_input(user_input)
+      entry = parsed_input[0]
+      if (entry == "S" or entry == "Student"):
+         student_command(parsed_input[1])
+         break
+      elif (entry == 'T' or entry == "Teacher"):
+         print ('T')
+         break
+      elif (entry == 'B' or entry == "Bus"):
+         print('B')
+         break
+      elif (entry == 'G' or entry == "Grade"):
+         print('G')
+         break
+      elif (entry == 'A' or entry == "Average"):
+         print('A')
+         break
+      elif (entry == 'I' or entry == "Info"):
+         print('I')
+         break
+   return
+
+if __name__ == '__main__':
+   main()
+'''
 def parseinstruction(userinput):
     parsed_input = userinput.split(":")
 
@@ -174,4 +206,5 @@ def main():
 #karla checking push
 if __name__ == "__main__":
     main()
+    '''
 
