@@ -8,7 +8,7 @@ def student_command(user_input):
     for line in file:
         data = line.strip().split(",")
         if data[0] == last_name:
-            print(data[0]+", "+data[1]+", "+data[2]+", "+data[3]+", "+data[6]+", "+data[7])
+            print(data[0]+","+data[1]+","+data[2]+","+data[3]+","+data[6]+","+data[7])
     file.close()
 
 
@@ -23,7 +23,7 @@ def teacher_command(user_input):
     for line in file:
         data = line.strip().split(",")
         if data[6] == last_name:
-            print(data[0]+", "+data[1])
+            print(data[0]+","+data[1])
     file.close()
 
 
@@ -40,7 +40,7 @@ def grade_command(user_input):
         for line in file:
             data = line.split(",")
             if data[2] == grade:
-                print(data[0] + ", " + data[1])
+                print(data[0] + "," + data[1])
         file.close()
 
     if len(parsed_input) == 2:
@@ -50,7 +50,7 @@ def grade_command(user_input):
         file = open("students.txt", 'r')
         data = file.readline().strip().split(",")
         file.readline()
-        output = data[0] + ", " + data[1] + ", " + data[5] + ", " + data[6] + ", " + data[7] + ", " + data[4]
+        output = data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4]
         gpa = float(data[5])
 
         if parsed_input[1] == "H" or parsed_input[1] == "High":
@@ -58,7 +58,7 @@ def grade_command(user_input):
                 data = line.strip().split(",")
                 if data[2] == grade:
                     if float(data[5]) > gpa:
-                        output = data[0] + ", " + data[1] + ", " + data[5] + ", " + data[6] + ", " + data[7] + ", " + data[4]
+                        output = data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4]
                         gpa = float(data[5])
             print(output)
 
@@ -67,7 +67,7 @@ def grade_command(user_input):
                 data = line.strip().split(",")
                 if data[2] == grade:
                     if float(data[5]) < gpa:
-                        output = data[0] + ", " + data[1] + ", " + data[5] + ", " + data[6] + ", " + data[7] + ", " + data[4]
+                        output = data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4]
                         gpa = float(data[5])
             print(output)
 
@@ -85,7 +85,7 @@ def bus_command(user_input):
     for line in file:
         data = line.strip().split(",")
         if data[4] == bus:
-            print(data[0]+", "+data[1] + ", " + data[2] + ", " + data[3])
+            print(data[0]+", "+data[1] + "," + data[2] + "," + data[3])
     file.close()
 
 
@@ -109,7 +109,7 @@ def average_command(user_input):
     file.close()
 
     if num_students != 0:
-        print(grade + ", " + str(round(total_gpa/num_students, 2)))
+        print(grade + "," + str(round(total_gpa/num_students, 2)))
 
 
 def info_command():
