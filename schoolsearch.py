@@ -4,7 +4,11 @@ def student_command(user_input):
         return
 
     last_name = parsed_input[0]
-    file = open("students.txt", 'r')
+    try:
+        file = open("students.txt", 'r')
+    except IOError:
+        exit(1)
+
     for line in file:
         data = line.strip().split(",")
         if data[0] == last_name:
@@ -19,7 +23,11 @@ def teacher_command(user_input):
 
     last_name = parsed_input[0]
 
-    file = open("students.txt", 'r')
+    try:
+        file = open("students.txt", 'r')
+    except IOError:
+        exit(1)
+
     for line in file:
         data = line.strip().split(",")
         if data[6] == last_name:
@@ -36,7 +44,11 @@ def grade_command(user_input):
     grade = parsed_input[0]
 
     if len(parsed_input) == 1:
-        file = open("students.txt", 'r')
+        try:
+            file = open("students.txt", 'r')
+        except IOError:
+            exit(1)
+
         for line in file:
             data = line.split(",")
             if data[2] == grade:
@@ -47,7 +59,11 @@ def grade_command(user_input):
         output = ""
         gpa = 0.0
 
-        file = open("students.txt", 'r')
+        try:
+            file = open("students.txt", 'r')
+        except IOError:
+            exit(1)
+
         data = file.readline().strip().split(",")
         file.readline()
         output = data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4]
@@ -81,7 +97,11 @@ def bus_command(user_input):
 
     bus = parsed_input[0]
 
-    file = open("students.txt", 'r')
+    try:
+        file = open("students.txt", 'r')
+    except IOError:
+        exit(1)
+
     for line in file:
         data = line.strip().split(",")
         if data[4] == bus:
@@ -100,7 +120,11 @@ def average_command(user_input):
     total_gpa = 0
     num_students = 0
 
-    file = open("students.txt", 'r')
+    try:
+        file = open("students.txt", 'r')
+    except IOError:
+        exit(1)
+
     for line in file:
         data = line.strip().split(",")
         if data[2] == grade:
@@ -113,42 +137,51 @@ def average_command(user_input):
 
 
 def info_command():
-    return
+    info_dict = {}
 
+    try:
+        file = open("students.txt", 'r')
+    except IOError:
+        exit(1)
 
-def quit_command():
-    return
+    for line in file:
+        data = line.strip().split(",")
+        if int(data[2]) not in info_dict:
+            info_dict[int(data[2])] = 1
+        else:
+            info_dict[int(data[2])] += 1
+    file.close()
+
+    for key in sorted(info_dict.keys()):
+        print(str(key) + ": " + str(info_dict[key]))
 
 
 def parse_input(input_string):
-   parsed = input_string.split(':')
-   return parsed
+    parsed = input_string.split(':')
+    return parsed
+
 
 def main():
-   entry = "q"
-   while entry != "Q" and  entry != "Quit":
-      user_input = input ("Input a search command: ")
-      parsed_input = parse_input(user_input)
-      entry = parsed_input[0]
-      if (entry == "S" or entry == "Student"):
-         student_command(parsed_input[1])
-         break
-      elif (entry == 'T' or entry == "Teacher"):
-         print ('T')
-         break
-      elif (entry == 'B' or entry == "Bus"):
-         print('B')
-         break
-      elif (entry == 'G' or entry == "Grade"):
-         print('G')
-         break
-      elif (entry == 'A' or entry == "Average"):
-         print('A')
-         break
-      elif (entry == 'I' or entry == "Info"):
-         print('I')
-         break
-   return
+    entry = "q"
+    while entry != "Q" and  entry != "Quit":
+        user_input = input ("Input a search command: ")
+        parsed_input = parse_input(user_input)
+        entry = parsed_input[0]
+
+        if len(parsed_input) == 2:
+            if entry == "S" or entry == "Student":
+                student_command(parsed_input[1])
+            elif entry == 'T' or entry == "Teacher":
+                teacher_command(parsed_input[1])
+            elif entry == 'B' or entry == "Bus":
+                bus_command(parsed_input[1])
+            elif entry == 'G' or entry == "Grade":
+                grade_command(parse_input[1])
+            elif entry == 'A' or entry == "Average":
+                average_command(parsed_input[1])
+        elif entry == 'I' or entry == "Info":
+            info_command()
+
 
 if __name__ == '__main__':
    main()
