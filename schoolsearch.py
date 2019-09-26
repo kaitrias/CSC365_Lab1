@@ -176,7 +176,7 @@ def main():
            elif entry == 'B' or entry == "Bus":
               bus_command(parsed_input[1])
            elif entry == 'G' or entry == "Grade":
-              grade_command(parse_input[1])
+              grade_command(parsed_input[1])
            elif entry == 'A' or entry == "Average":
               average_command(parsed_input[1])
         elif entry == 'I' or entry == "Info":

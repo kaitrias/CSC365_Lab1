@@ -4,19 +4,10 @@
 #CSC 365. Fall 2019
 #Lab 1-1 test suite
 
-isEqual(){
-   if [[ $1 == $2 ]]
-   then
-      echo "PASSED Test $3"
-   else
-      echo "FAILED Test $3"
-   fi
-}
-
 #TC-1
 #Tests Requirements R3, R4
 #short form command name, existing student
-#expected output: Input a search command: HAVIR,BOBBIE,2,108,HAMER,GAVIN
+#expected output: HAVIR,BOBBIE,2,108,HAMER,GAVIN
 
 #TC-2
 #Tests Requirements R3, R4
@@ -31,12 +22,12 @@ isEqual(){
 #TC-4
 #Tests Requirements R3, R4
 #long form command name, existing student
-#expected output: Input a search command: HAVIR,BOBBIE,2,108,HAMER,GAVIN
+#expected output: HAVIR,BOBBIE,2,108,HAMER,GAVIN
 
 #TC-5
 #Tests Requirements R3, R5
 #short form command name, existing student with short form bus route
-#expected output: Input a search command: HAVIR,BOBBIE,0
+#expected output: HAVIR,BOBBIE,0
 
 #TC-6
 #Tests Requirements R3, R5
@@ -45,7 +36,7 @@ isEqual(){
 
 #TC-7
 #Tests Requirement R3, R6
-#short form command name, existing student
+#short form command name, existing teacher HAMER
 #expected output: 
 #LIBRANDI, TODD
 #HAVIR,BOBBIE
@@ -61,9 +52,9 @@ isEqual(){
 
 #TC-8
 #Tests Requirement R3, R6
-#long form command name, existing student
+#long form command name, existing teacher: HAMER
 #expected output:
-#LIBRANDI, TODD
+#LIBRANDI,TODD
 #HAVIR,BOBBIE
 #SARAO,DIEDRA
 #VANCOTT,MIKE
@@ -75,4 +66,79 @@ isEqual(){
 #MULGREW,RANDELL
 #TOWLEY,LANE
 
+#FAILING
+#TC-9
+#Tests Requirement R3, R9
+#short form command, non-existing grade: 2.5
+#expected output: <empty_line> 
+
+#TC-10
+#Tests Requirement R3, R9
+#long form command, existing grade: 2
+#expected output:
+#WOOLERY,NOLAN
+#VILARDO,EMMANUEL
+#LIBRANDI,TODD
+#HAVIR,BOBBIE
+#SARAO,DIEDRA
+#VANCOTT,MIKE
+#WICINSKY,TERESE
+#KOZOLA,BUSTER
+#MULLINGS,LEIGHANN
+#BUSSMANN,BILLY
+#BERBES,DICK
+#MULGREW,RANDELL
+#TOWLEY,LANE
+
+#TC-11
+#Tests Requirement R3, R9
+#short form command, non-existing grade: 0 
+#expected output:<empty_line>
+
+#FAILED
+#TC-12
+#Tests Requirement R3, R9
+#short form command, existing grade, with short form high gpa: 3.56
+#expected output:
+
+#TC-13
+#Tests Requirement R3, R9
+#long form command, existing grade, with short form high gpa: 4, 3.56
+#expected output:
+
+#TC-14
+#Tests Requirement R3, R9
+#long form command, existing grade, with long form high gpa: 2, 3.56
+#expected output:
+
+#TC-15
+#Tests Requirement R3, R9
+#long form command, existing grade, with short form low gpa: 2, 3.56
+#expected output:
+
+#TC-16
+#Tests Requirement R3, R9
+#long form command, existing grade, with short form high gpa: 2, 2, 3.56
+#expected output:
+
+#TC-17
+#Tests Requirement R3, R9
+#long form command, existing grade, with long form high gpa: 2, 3.56
+#expected output:
+
+#TC-18
+#Tests Requirement R3, R9
+#long form command, non-existing grade, with short form high gpa: 0, 3.56
+#expected output:
+
+#TC-19
+#Tests Requirement R3, R10
+#short form command, non-existing grade: 0
+#expected output: <empty_line>
+#Input a search command
+
+#TC-20
+#Tests Requirement R3, R10
+#short form command, existing grade: 2
+#expected_output: 2, 2.95
 
