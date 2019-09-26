@@ -1,9 +1,17 @@
-def student_command(user_input):
-    parsed_input = user_input.strip().split(" ")
-    if len(parsed_input) != 1:
-        return
+def student_command_with_b(last_name):
+    try:
+        file = open("students.txt", 'r')
+    except IOError:
+        exit(1)
 
-    last_name = parsed_input[0]
+    for line in file:
+        data = line.strip().split(",")
+        if data[0] == last_name:
+            print(data[0]+","+data[1]+","+data[4])
+    file.close()
+
+
+def student_command_without_b(last_name):
     try:
         file = open("students.txt", 'r')
     except IOError:
@@ -14,6 +22,17 @@ def student_command(user_input):
         if data[0] == last_name:
             print(data[0]+","+data[1]+","+data[2]+","+data[3]+","+data[6]+","+data[7])
     file.close()
+
+
+def student_command(user_input):
+    parsed_input = user_input.strip().split(" ")
+
+    if len(parsed_input) == 1:
+        student_command_without_b(parsed_input[0])
+
+    if len(parsed_input) == 2:
+        if parsed_input[1] == "B" or parsed_input[1] == "Bus":
+            student_command_with_b(parsed_input[0])
 
 
 def teacher_command(user_input):
@@ -35,6 +54,50 @@ def teacher_command(user_input):
     file.close()
 
 
+def grade_command_with_gpa(input):
+    student_list = []
+    gpa = 0.0
+    try:
+        file = open("students.txt", 'r')
+    except IOError:
+        exit(1)
+
+    grade = input[0]
+    flag = input[1]
+
+
+    if flag == "H" or flag == "High":
+        gpa = 0.0
+        for line in file:
+            data = line.strip().split(",")
+            if grade == data[2]:
+                if float(data[5]) > gpa:
+                    gpa = float(data[5])
+                    student_list.clear()
+                    student_list.append(data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4])
+                elif float(data[5]) == gpa:
+                    student_list.append(data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4])
+        for student in student_list:
+            print(student)
+
+    if flag == "L" or flag == "Low":
+        gpa = 10.0
+        for line in file:
+            data = line.strip().split(",")
+            if grade == data[2]:
+                if float(data[5]) < gpa:
+                    gpa = float(data[5])
+                    student_list.clear()
+                    student_list.append(data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4])
+                elif float(data[5]) == gpa:
+                    student_list.append(data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4])
+        for student in student_list:
+            print(student)
+
+    file.close()
+
+
+
 def grade_command(user_input):
     parsed_input = user_input.strip().split(" ")
 
@@ -50,44 +113,13 @@ def grade_command(user_input):
             exit(1)
 
         for line in file:
-            data = line.split(",")
+            data = line.strip().split(",")
             if data[2] == grade:
                 print(data[0] + "," + data[1])
         file.close()
 
     if len(parsed_input) == 2:
-        output = ""
-        gpa = 0.0
-
-        try:
-            file = open("students.txt", 'r')
-        except IOError:
-            exit(1)
-
-        data = file.readline().strip().split(",")
-        file.readline()
-        output = data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4]
-        gpa = float(data[5])
-
-        if parsed_input[1] == "H" or parsed_input[1] == "High":
-            for line in file:
-                data = line.strip().split(",")
-                if data[2] == grade:
-                    if float(data[5]) > gpa:
-                        output = data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4]
-                        gpa = float(data[5])
-            print(output)
-
-        if parsed_input[1] == "L" or parsed_input[1] == "Low":
-            for line in file:
-                data = line.strip().split(",")
-                if data[2] == grade:
-                    if float(data[5]) < gpa:
-                        output = data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4]
-                        gpa = float(data[5])
-            print(output)
-
-        file.close()
+        grade_command_with_gpa(parsed_input)
 
 
 def bus_command(user_input):
