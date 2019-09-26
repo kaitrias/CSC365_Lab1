@@ -218,7 +218,7 @@ if __name__ == '__main__':
    main()
 '''
 
-def parseinstruction(userinput, flag):
+def parseinstruction(userinput):
     parsed_input = userinput.split(":")
    
     if parsed_input[0] == "I" or parsed_input[0] == "Info":
@@ -227,8 +227,7 @@ def parseinstruction(userinput, flag):
            return
     elif parsed_input[0] == "Q" or parsed_input[0] == "Quit":
         if len(parsed_input) == 1:
-           flag = 1
-           return flag
+           exit(0)
         return
 
     if len(parsed_input) != 2:
@@ -249,12 +248,9 @@ def parseinstruction(userinput, flag):
         return
 
 def main():
-    flag = 0;
     while (1):
        userinput = input("Input a search command: ")
-       flag = parseinstruction(userinput, flag)
-       if flag == 1:
-          return
+       parseinstruction(userinput)
 if __name__ == "__main__":
     main()
 
