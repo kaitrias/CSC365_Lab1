@@ -1,3 +1,10 @@
+def check_txt_file(line):
+    data = line.strip().split(",")
+    if len(data) != 8:
+        exit(1)
+    return data
+
+
 def student_command_with_b(last_name):
     try:
         file = open("students.txt", 'r')
@@ -5,7 +12,7 @@ def student_command_with_b(last_name):
         exit(1)
 
     for line in file:
-        data = line.strip().split(",")
+        data = check_txt_file(line)
         if data[0] == last_name:
             print(data[0]+","+data[1]+","+data[4])
     file.close()
@@ -18,7 +25,7 @@ def student_command_without_b(last_name):
         exit(1)
 
     for line in file:
-        data = line.strip().split(",")
+        data = check_txt_file(line)
         if data[0] == last_name:
             print(data[0]+","+data[1]+","+data[2]+","+data[3]+","+data[6]+","+data[7])
     file.close()
@@ -48,7 +55,7 @@ def teacher_command(user_input):
         exit(1)
 
     for line in file:
-        data = line.strip().split(",")
+        data = check_txt_file(line)
         if data[6] == last_name:
             print(data[0]+","+data[1])
     file.close()
@@ -65,11 +72,10 @@ def grade_command_with_gpa(input):
     grade = input[0]
     flag = input[1]
 
-
     if flag == "H" or flag == "High":
         gpa = 0.0
         for line in file:
-            data = line.strip().split(",")
+            data = check_txt_file(line)
             if grade == data[2]:
                 if float(data[5]) > gpa:
                     gpa = float(data[5])
@@ -83,7 +89,7 @@ def grade_command_with_gpa(input):
     if flag == "L" or flag == "Low":
         gpa = 10.0
         for line in file:
-            data = line.strip().split(",")
+            data = check_txt_file(line)
             if grade == data[2]:
                 if float(data[5]) < gpa:
                     gpa = float(data[5])
@@ -95,7 +101,6 @@ def grade_command_with_gpa(input):
             print(student)
 
     file.close()
-
 
 
 def grade_command(user_input):
@@ -113,7 +118,7 @@ def grade_command(user_input):
             exit(1)
 
         for line in file:
-            data = line.strip().split(",")
+            data = check_txt_file(line)
             if data[2] == grade:
                 print(data[0] + "," + data[1])
         file.close()
@@ -135,7 +140,7 @@ def bus_command(user_input):
         exit(1)
 
     for line in file:
-        data = line.strip().split(",")
+        data = check_txt_file(line)
         if data[4] == bus:
             print(data[0]+", "+data[1] + "," + data[2] + "," + data[3])
     file.close()
@@ -158,7 +163,7 @@ def average_command(user_input):
         exit(1)
 
     for line in file:
-        data = line.strip().split(",")
+        data = check_txt_file(line)
         if data[2] == grade:
             total_gpa += float(data[5])
             num_students += 1
@@ -177,7 +182,7 @@ def info_command():
         exit(1)
 
     for line in file:
-        data = line.strip().split(",")
+        data = check_txt_file(line)
         if int(data[2]) not in info_dict:
             info_dict[int(data[2])] = 1
         else:
@@ -218,6 +223,7 @@ if __name__ == '__main__':
    main()
 '''
 
+
 def parseinstruction(userinput, flag):
     parsed_input = userinput.split(":")
    
@@ -248,13 +254,16 @@ def parseinstruction(userinput, flag):
     else:
         return
 
+
 def main():
-    flag = 0;
+    flag = 0
     while (1):
        userinput = input("Input a search command: ")
        flag = parseinstruction(userinput, flag)
        if flag == 1:
           return
+
+
 if __name__ == "__main__":
     main()
 
