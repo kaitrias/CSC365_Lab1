@@ -187,7 +187,7 @@ def info_command():
     for key in sorted(info_dict.keys()):
         print(str(key) + ": " + str(info_dict[key]))
 
-
+'''
 def parse_input(input_string):
     parsed = input_string.split(':')
     return parsed
@@ -199,7 +199,6 @@ def main():
         user_input = input ("Input a search command: ")
         parsed_input = parse_input(user_input)
         entry = parsed_input[0]
-
         if len(parsed_input) >= 2:
            if entry == "S" or entry == "Student":
               student_command(parsed_input[1])
@@ -213,63 +212,49 @@ def main():
               average_command(parsed_input[1])
         elif entry == 'I' or entry == "Info":
            info_command()
-              
     return
 
 if __name__ == '__main__':
    main()
 '''
-def parseinstruction(userinput):
-    parsed_input = userinput.split(":")
 
-    if parsed_input[0] == "I":
-        info_command()
-        return
-    elif parsed_input[0] == "Info":
-        info_command()
-        return
-    elif parsed_input[0] == "Q":
-        quit_command()
-        return
-    elif parsed_input[0] == "Quit":
-        quit_command()
+def parseinstruction(userinput, flag):
+    parsed_input = userinput.split(":")
+   
+    if parsed_input[0] == "I" or parsed_input[0] == "Info":
+        if len(parsed_input) == 1:
+           info_command()
+           return
+    elif parsed_input[0] == "Q" or parsed_input[0] == "Quit":
+        if len(parsed_input) == 1:
+           flag = 1
+           return flag
         return
 
     if len(parsed_input) != 2:
         return
 
     command = parsed_input[0]
-    if command == "S":
+    if command == "S" or command == "Student":
         student_command(parsed_input[1])
-    elif command == "Student":
-        student_command(parsed_input[1])
-    elif command == "T":
+    elif command == "T" or command == "Teacher":
         teacher_command(parsed_input[1])
-    elif command == "Teacher":
-        teacher_command(parsed_input[1])
-    elif command == "G":
+    elif command == "G" or command == "Grade":
         grade_command(parsed_input[1])
-    elif command == "Grade":
-        grade_command(parsed_input[1])
-    elif command == "B":
+    elif command == "B" or command == "Bus":
         bus_command(parsed_input[1])
-    elif command == "Bus":
-        bus_command(parsed_input[1])
-    elif command == "A":
-        average_command(parsed_input[1])
-    elif command == "Average":
+    elif command == "A" or command == "Average":
         average_command(parsed_input[1])
     else:
         return
 
-
 def main():
-    while 1:
-        userinput = input()
-        parseinstruction(userinput)
-
-#checking push
-#karla checking push
+    flag = 0;
+    while (1):
+       userinput = input("Input a search command: ")
+       flag = parseinstruction(userinput, flag)
+       if flag == 1:
+          return
 if __name__ == "__main__":
     main()
-'''
+
