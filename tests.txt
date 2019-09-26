@@ -1,78 +1,259 @@
-#!/bin/bash
 
-#Nadia Wohlfarth, Kai Trias, Karla Sunjara
-#CSC 365. Fall 2019
-#Lab 1-1 test suite
+Nadia Wohlfarth, Kai Trias, Karla Sunjara
+CSC 365. Fall 2019
+Lab 1-1 test suite
 
-isEqual(){
-   if [[ $1 == $2 ]]
-   then
-      echo "PASSED Test $3"
-   else
-      echo "FAILED Test $3"
-   fi
-}
+TC-1
+Tests Requirements R3, R4
+short form command name, existing student
+expected output: HAVIR,BOBBIE,2,108,HAMER,GAVIN
+S: HAVIR
 
-#TC-1
-#Tests Requirements R3, R4
-#short form command name, existing student
-#expected output: Input a search command: HAVIR,BOBBIE,2,108,HAMER,GAVIN
+TC-2
+Tests Requirements R3, R4
+short form command name, non-existing student
+expected output: <empty line>
+S: josh
 
-#TC-2
-#Tests Requirements R3, R4
-#short form command name, non-existing student
-#expected output: <empty line>
+TC-3
+Tests Requirements R3, R13
+quit command
+expected output: program terminates
+Q
 
-#TC-3
-#Tests Requirements R3, R13
-#quit command
-#expected output: program terminates
+TC-4
+Tests Requirements R3, R4
+long form command name, existing student
+expected output: HAVIR,BOBBIE,2,108,HAMER,GAVIN
+Student: HAVIR
 
-#TC-4
-#Tests Requirements R3, R4
-#long form command name, existing student
-#expected output: Input a search command: HAVIR,BOBBIE,2,108,HAMER,GAVIN
+TC-5
+Tests Requirements R3, R5
+short form command name, existing student with short form bus route
+expected output: HAVIR,BOBBIE,0
+S: HAVIR B
 
-#TC-5
-#Tests Requirements R3, R5
-#short form command name, existing student with short form bus route
-#expected output: Input a search command: HAVIR,BOBBIE,0
+TC-6
+Tests Requirements R3, R5
+short form command name, existing student with long form bus route
+expected output: HAVIR,BOBBIE,0
+S: HAVIR Bus
 
-#TC-6
-#Tests Requirements R3, R5
-#short form command name, existing student with long form bus route
-#expected output: HAVIR,BOBBIE,0
+TC-7
+Tests Requirement R3, R6
+short form command name, existing teacher
+expected output: 
+LIBRANDI, TODD
+HAVIR,BOBBIE
+SARAO,DIEDRA
+VANCOTT,MIKE
+WICINSKY,TERESE
+KOZOLA,BUSTER
+MULLINGS,LEIGHANN
+BUSSMANN,BILLY
+BERBES,DICK
+MULGREW,RANDELL
+TOWLEY,LANE
+T: HAMER
 
-#TC-7
-#Tests Requirement R3, R6
-#short form command name, existing student
-#expected output: 
-#LIBRANDI, TODD
-#HAVIR,BOBBIE
-#SARAO,DIEDRA
-#VANCOTT,MIKE
-#WICINSKY,TERESE
-#KOZOLA,BUSTER
-#MULLINGS,LEIGHANN
-#BUSSMANN,BILLY
-#BERBES,DICK
-#MULGREW,RANDELL
-#TOWLEY,LANE
+TC-8
+Tests Requirement R3, R6
+long form command name, existing teacher
+expected output:
+LIBRANDI,TODD
+HAVIR,BOBBIE
+SARAO,DIEDRA
+VANCOTT,MIKE
+WICINSKY,TERESE
+KOZOLA,BUSTER
+MULLINGS,LEIGHANN
+BUSSMANN,BILLY
+BERBES,DICK
+MULGREW,RANDELL
+TOWLEY,LANE
+Teacher: HAMER
 
-#TC-8
-#Tests Requirement R3, R6
-#long form command name, existing student
-#expected output:
-#LIBRANDI, TODD
-#HAVIR,BOBBIE
-#SARAO,DIEDRA
-#VANCOTT,MIKE
-#WICINSKY,TERESE
-#KOZOLA,BUSTER
-#MULLINGS,LEIGHANN
-#BUSSMANN,BILLY
-#BERBES,DICK
-#MULGREW,RANDELL
-#TOWLEY,LANE
+TC-9
+Tests Requirement R3, R6
+short form command, non-existing teacher
+expected output: <empty_line> 
+T: BOBBY
 
+TC-10
+Tests Requirement R3, R7
+long form command, existing grade
+expected output:
+WOOLERY,NOLAN
+VILARDO,EMMANUEL
+LIBRANDI,TODD
+HAVIR,BOBBIE
+SARAO,DIEDRA
+VANCOTT,MIKE
+WICINSKY,TERESE
+KOZOLA,BUSTER
+MULLINGS,LEIGHANN
+BUSSMANN,BILLY
+BERBES,DICK
+MULGREW,RANDELL
+TOWLEY,LANE
+Grade: 2
 
+TC-11
+Tests Requirement R3, R7
+short form command, non-existing grade 
+expected output:<empty_line>
+G: 0
+
+TC-12
+Tests Requirement R3, R9
+short form command, existing grade, with short form high gpa
+expected output: WICINSKY,TERESE,3.22,HAMER,GAVIN,53
+G: 2 H
+
+TC-13
+Tests Requirement R3, R9
+long form command, existing grade, with short form high gpa
+expected output: WICINSKY,TERESE,3.22,HAMER,GAVIN,53
+Grade: 2 H
+
+TC-14
+Tests Requirement R3, R9
+long form command, existing grade, with long form high gpa 
+expected output: WICINSKY,TERESE,3.22,HAMER,GAVIN,53
+Grade: 2 High
+
+TC-15
+Tests Requirement R3, R9
+long form command, existing grade, with short form low gpa
+expected output: KOZOLA,BUSTER,2.76,HAMER,GAVIN,55
+Grade: 2 L
+
+TC-16
+Tests Requirement R3, R9
+long form command, 2 existing students with the highest grade 
+expected output:
+CORKER,CARTER,3.12,HANTZ,JED,53
+RAPOSE,ALONZO,3.12,HANTZ,JED,51
+Grade: 4 H
+
+TC-17
+Tests Requirement R3, R9
+long form command, non-existing grade, with short form low gpa
+expected output: <empty_line>
+Grade: 5 L
+
+TC-18
+Tests Requirement R3, R9
+long form command, non-existing grade, with short form high gpa
+expected output: <empty_line>
+Grade: 0 H
+
+TC-19
+Tests Requirement R3, R10
+short form command, non-existing grade
+expected output: <empty_line>
+A: 0
+
+TC-20
+Tests Requirement R3, R10
+short form command, existing grade
+expected_output: 2,2.95
+A: 2
+
+TC-21
+Tests Requirement R3, R10
+long form command, existing grade
+expected_output: 2,2.95
+Average: 2
+
+TC-22
+Tests Requirement R3, R11
+short form command
+expected_output:
+1: 2
+2: 13
+3: 9
+4: 15
+6: 21
+I
+
+TC-23
+Tests Requirement R3, R11
+long form command
+expected_output:
+1: 2
+2: 13
+3: 9
+4: 15
+6: 21
+Info
+
+TC-24
+Tests Requirement R3, R11
+short form but incorrect version of command:
+expected_output:<empty_line>
+I:
+
+TC-25
+Tests Requirement R3, R12
+short form command
+expected output: program terminates
+Q
+
+TC-26
+Tests Requirement R3, R12
+long form command
+expected_output: program terminates
+Quit
+
+TC-27
+Tests Requirement R3, R12
+short form but incorrect version of command:
+expected output: <empty_line>
+Q:
+
+TC-28
+Tests Requirement R3, R13
+program without student.txt in the directory
+expected output: terminates program
+A: 2
+
+TC-29
+Tests Requirement E1
+student.txt file that is not formatted correctly
+expected output: terminates program, returns an exit code of 1
+A: 2
+
+TC-30
+Tests Requirement R3, R8
+short form, existing bus route
+expected output: 
+WOOLERY, NOLAN,2,104
+STERBACK, PETER,6,111
+LIBRANDI, TODD,2,108
+RAPOSE, ALONZO,4,105
+COVINGTON, TOMAS,3,107
+MULLINGS, LEIGHANN,2,108
+DURAND, CARLEE,4,101
+FRIEDSTROM, REED,6,106
+B: 51
+
+TC-31
+Tests Requirement R3, R8
+long form, existing bus route
+expected output:
+WOOLERY, NOLAN,2,104
+STERBACK, PETER,6,111
+LIBRANDI, TODD,2,108
+RAPOSE, ALONZO,4,105
+COVINGTON, TOMAS,3,107
+MULLINGS, LEIGHANN,2,108
+DURAND, CARLEE,4,101
+FRIEDSTROM, REED,6,106
+Bus: 51
+
+TC-32
+Tests Requirement R3,R8
+short form, non-existing bus route
+expected output: <empty_line>
+B: 1

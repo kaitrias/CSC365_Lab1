@@ -1,3 +1,13 @@
+#Nadia Wohlfarth, Kai Trias, Karla Sunjara
+#CSC 365. Fall 2019
+#Lab 1-1 
+def check_txt_file(line):
+    data = line.strip().split(",")
+    if len(data) != 8:
+        exit(1)
+    return data
+
+
 def student_command_with_b(last_name):
     try:
         file = open("students.txt", 'r')
@@ -5,7 +15,7 @@ def student_command_with_b(last_name):
         exit(1)
 
     for line in file:
-        data = line.strip().split(",")
+        data = check_txt_file(line)
         if data[0] == last_name:
             print(data[0]+","+data[1]+","+data[4])
     file.close()
@@ -18,7 +28,7 @@ def student_command_without_b(last_name):
         exit(1)
 
     for line in file:
-        data = line.strip().split(",")
+        data = check_txt_file(line)
         if data[0] == last_name:
             print(data[0]+","+data[1]+","+data[2]+","+data[3]+","+data[6]+","+data[7])
     file.close()
@@ -48,7 +58,7 @@ def teacher_command(user_input):
         exit(1)
 
     for line in file:
-        data = line.strip().split(",")
+        data = check_txt_file(line)
         if data[6] == last_name:
             print(data[0]+","+data[1])
     file.close()
@@ -65,11 +75,10 @@ def grade_command_with_gpa(input):
     grade = input[0]
     flag = input[1]
 
-
     if flag == "H" or flag == "High":
         gpa = 0.0
         for line in file:
-            data = line.strip().split(",")
+            data = check_txt_file(line)
             if grade == data[2]:
                 if float(data[5]) > gpa:
                     gpa = float(data[5])
@@ -83,7 +92,7 @@ def grade_command_with_gpa(input):
     if flag == "L" or flag == "Low":
         gpa = 10.0
         for line in file:
-            data = line.strip().split(",")
+            data = check_txt_file(line)
             if grade == data[2]:
                 if float(data[5]) < gpa:
                     gpa = float(data[5])
@@ -95,7 +104,6 @@ def grade_command_with_gpa(input):
             print(student)
 
     file.close()
-
 
 
 def grade_command(user_input):
@@ -113,7 +121,7 @@ def grade_command(user_input):
             exit(1)
 
         for line in file:
-            data = line.strip().split(",")
+            data = check_txt_file(line)
             if data[2] == grade:
                 print(data[0] + "," + data[1])
         file.close()
@@ -135,13 +143,12 @@ def bus_command(user_input):
         exit(1)
 
     for line in file:
-        data = line.strip().split(",")
+        data = check_txt_file(line)
         if data[4] == bus:
             print(data[0]+", "+data[1] + "," + data[2] + "," + data[3])
     file.close()
 
 
-# in-progress
 def average_command(user_input):
     parsed_input = user_input.strip().split(" ")
     if len(parsed_input) != 1:
@@ -158,7 +165,7 @@ def average_command(user_input):
         exit(1)
 
     for line in file:
-        data = line.strip().split(",")
+        data = check_txt_file(line)
         if data[2] == grade:
             total_gpa += float(data[5])
             num_students += 1
@@ -177,7 +184,7 @@ def info_command():
         exit(1)
 
     for line in file:
-        data = line.strip().split(",")
+        data = check_txt_file(line)
         if int(data[2]) not in info_dict:
             info_dict[int(data[2])] = 1
         else:
@@ -187,89 +194,40 @@ def info_command():
     for key in sorted(info_dict.keys()):
         print(str(key) + ": " + str(info_dict[key]))
 
-
-def parse_input(input_string):
-    parsed = input_string.split(':')
-    return parsed
-
-
-def main():
-    entry = "q"
-    while entry != "Q" and  entry != "Quit":
-        user_input = input ("Input a search command: ")
-        parsed_input = parse_input(user_input)
-        entry = parsed_input[0]
-
-        if len(parsed_input) >= 2:
-           if entry == "S" or entry == "Student":
-              student_command(parsed_input[1])
-           elif entry == 'T' or entry == "Teacher":
-              teacher_command(parsed_input[1])
-           elif entry == 'B' or entry == "Bus":
-              bus_command(parsed_input[1])
-           elif entry == 'G' or entry == "Grade":
-              grade_command(parsed_input[1])
-           elif entry == 'A' or entry == "Average":
-              average_command(parsed_input[1])
-        elif entry == 'I' or entry == "Info":
-           info_command()
-              
-    return
-
-if __name__ == '__main__':
-   main()
-'''
 def parseinstruction(userinput):
     parsed_input = userinput.split(":")
-
-    if parsed_input[0] == "I":
-        info_command()
-        return
-    elif parsed_input[0] == "Info":
-        info_command()
-        return
-    elif parsed_input[0] == "Q":
-        quit_command()
-        return
-    elif parsed_input[0] == "Quit":
-        quit_command()
+   
+    if parsed_input[0] == "I" or parsed_input[0] == "Info":
+        if len(parsed_input) == 1:
+           info_command()
+           return
+    elif parsed_input[0] == "Q" or parsed_input[0] == "Quit":
+        if len(parsed_input) == 1:
+           exit(0)
         return
 
     if len(parsed_input) != 2:
         return
 
     command = parsed_input[0]
-    if command == "S":
+    if command == "S" or command == "Student":
         student_command(parsed_input[1])
-    elif command == "Student":
-        student_command(parsed_input[1])
-    elif command == "T":
+    elif command == "T" or command == "Teacher":
         teacher_command(parsed_input[1])
-    elif command == "Teacher":
-        teacher_command(parsed_input[1])
-    elif command == "G":
+    elif command == "G" or command == "Grade":
         grade_command(parsed_input[1])
-    elif command == "Grade":
-        grade_command(parsed_input[1])
-    elif command == "B":
+    elif command == "B" or command == "Bus":
         bus_command(parsed_input[1])
-    elif command == "Bus":
-        bus_command(parsed_input[1])
-    elif command == "A":
-        average_command(parsed_input[1])
-    elif command == "Average":
+    elif command == "A" or command == "Average":
         average_command(parsed_input[1])
     else:
         return
 
 
 def main():
-    while 1:
-        userinput = input()
-        parseinstruction(userinput)
-
-#checking push
-#karla checking push
+    while (1):
+       userinput = input("Input a search command: ")
+       parseinstruction(userinput)
 if __name__ == "__main__":
     main()
-'''
+
