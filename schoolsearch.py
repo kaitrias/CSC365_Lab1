@@ -1,3 +1,6 @@
+#Nadia Wohlfarth, Kai Trias, Karla Sunjara
+#CSC 365. Fall 2019
+#Lab 1-1 
 def check_txt_file(line):
     data = line.strip().split(",")
     if len(data) != 8:
@@ -146,7 +149,6 @@ def bus_command(user_input):
     file.close()
 
 
-# in-progress
 def average_command(user_input):
     parsed_input = user_input.strip().split(" ")
     if len(parsed_input) != 1:
@@ -191,37 +193,6 @@ def info_command():
 
     for key in sorted(info_dict.keys()):
         print(str(key) + ": " + str(info_dict[key]))
-
-'''
-def parse_input(input_string):
-    parsed = input_string.split(':')
-    return parsed
-
-
-def main():
-    entry = "q"
-    while entry != "Q" and  entry != "Quit":
-        user_input = input ("Input a search command: ")
-        parsed_input = parse_input(user_input)
-        entry = parsed_input[0]
-        if len(parsed_input) >= 2:
-           if entry == "S" or entry == "Student":
-              student_command(parsed_input[1])
-           elif entry == 'T' or entry == "Teacher":
-              teacher_command(parsed_input[1])
-           elif entry == 'B' or entry == "Bus":
-              bus_command(parsed_input[1])
-           elif entry == 'G' or entry == "Grade":
-              grade_command(parsed_input[1])
-           elif entry == 'A' or entry == "Average":
-              average_command(parsed_input[1])
-        elif entry == 'I' or entry == "Info":
-           info_command()
-    return
-
-if __name__ == '__main__':
-   main()
-'''
 
 def parseinstruction(userinput):
     parsed_input = userinput.split(":")
