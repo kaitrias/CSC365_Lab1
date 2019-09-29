@@ -1,6 +1,6 @@
 #Nadia Wohlfarth, Kai Trias, Karla Sunjara
 #CSC 365. Fall 2019
-#Lab 1-1 
+#Lab 1-2 
 def check_txt_file(line):
     data = line.strip().split(",")
     if len(data) != 8:
@@ -23,7 +23,7 @@ def student_command_with_b(last_name):
 
 def student_command_without_b(last_name):
     try:
-        file = open("students.txt", 'r')
+        file = open("list.txt", 'r')
     except IOError:
         exit(1)
 
