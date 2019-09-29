@@ -264,21 +264,21 @@ TC-33
 Test Requirement NR1
 short form, existing classroom number
 expected output:
-DURAND, CARLEE
+DURAND,CARLEE
 N: 101
 
 TC-34
 Test Requirement NR2
 short form, existing teacher
 expected output:
-COOL, REUBEN
+COOL,REUBEN
 NT: 101
 
 TC-35
 Test Requirement NR3
 short form, existing grade
 expected output:
-FALKER, ADOLPH
+FALKER,ADOLPH
 GT: 1
 
 TC-36
