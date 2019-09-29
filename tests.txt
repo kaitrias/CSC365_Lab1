@@ -317,28 +317,28 @@ TC-38
 Test Requirement NR5
 long form, existing teachers
 expected output:
-COOL, REUBEN
-KERBS, BENITO
-FALKER, ADOLPH
-STEIB, GALE
-HANTZ, JED
-BODZIONY, LUZ
-FAFARD, ROCIO
-HAMER, GAVIN
-GAMBREL, JAE
-ALPERT, JONATHAN
-NISTENDIRK, NANCY
-CHIONCHIO, PERLA
+COOL,REUBEN:
+KERBS,BENITO:
+FALKER,ADOLPH:
+STEIB,GALE:
+HANTZ,JED:
+BODZIONY,LUZ:
+FAFARD,ROCIO:
+HAMER,GAVIN:
+GAMBREL,JAE:
+ALPERT,JONATHAN:
+NISTENDIRK,NANCY:
+CHIONCHIO,PERLA:
 Analytics: T
 
 TC-39
 Test Requirement NR5
 long form, existing bus routes
 expected output:
-Bus Route 51
-Bus Route 52
-Bus Route 53
-Bus Route 54
-Bus Route 55
-Bus Route 56
+Bus Route 51:
+Bus Route 52:
+Bus Route 53:
+Bus Route 54:
+Bus Route 55:
+Bus Route 56:
 Analytics: B
