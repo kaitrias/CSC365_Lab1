@@ -1,7 +1,7 @@
 
 Nadia Wohlfarth, Kai Trias, Karla Sunjara
 CSC 365. Fall 2019
-Lab 1-1 test suite
+Lab 1-2 test suite
 
 TC-1
 Tests Requirements R3, R4
@@ -257,3 +257,44 @@ Tests Requirement R3,R8
 short form, non-existing bus route
 expected output: <empty_line>
 B: 1
+
+Additional Functionality: Extended Search
+--
+TC-33
+Test Requirement NR1
+short form, existing classroom number
+expected output:
+DURAND, CARLEE
+N: 101
+
+TC-34
+Test Requirement NR2
+short form, existing teacher
+expected output:
+COOL, REUBEN
+NT: 101
+
+TC-35
+Test Requirement NR3
+short form, existing grade
+expected output:
+FALKER, ADOLPH
+GT: 1
+
+TC-36
+Test Requirement NR4
+short form, existing classroom
+expected output:
+101: 1 students
+102: 5 students
+103: 2 students
+104: 2 students
+105: 6 students
+106: 2 students
+107: 7 students
+108: 11 students
+109: 5 students
+110: 2 students
+111: 9 students
+112: 8 students
+E
