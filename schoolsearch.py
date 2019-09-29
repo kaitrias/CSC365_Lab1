@@ -232,6 +232,87 @@ def info_command():
     for key in sorted(info_dict.keys()):
         print(str(key) + ": " + str(info_dict[key]))
 
+# Given a classroom number, list all students assigned to it.
+def students_in_classroom_command(user_input):
+    parsed_input = user_input.strip().split(" ")
+    if len(parsed_input) != 1:
+        return
+
+    classroom = parsed_input[0]
+
+    try:
+        file = open("list.txt", 'r')
+    except IOError:
+        exit(1)
+
+    for line in file:
+        data = check_txt_file(line)
+        if classroom == data[3].strip():
+            print(data[0].strip() + "," + data[1].strip())
+
+
+# Given a classroom number, find the teacher (or teachers) teaching in it.
+def teacher_with_classroom_command(user_input):
+    parsed_input = user_input.strip().split(" ")
+    if len(parsed_input) != 1:
+        return
+
+    classroom = parsed_input[0]
+
+    try:
+        file = open("teachers.txt", 'r')
+    except IOError:
+        exit(1)
+
+    for line in file:
+        data = check_teachers_file(line)
+        if classroom == data[2].strip():
+            print(data[0].strip() + "," + data[1].strip())
+
+
+def teacher_with_grade_command(user_input):
+    parsed_input = user_input.strip().split(" ")
+    if len(parsed_input) != 1:
+        return
+
+    grade = parsed_input[0]
+
+    try:
+        file = open("list.txt", 'r')
+    except IOError:
+        exit(1)
+
+    classrooms = set()
+
+    for line in file:
+        data = check_txt_file(line)
+        if grade == data[2].strip():
+            classrooms.add(data[3].strip())
+
+    for classroom in classrooms:
+        teacher_with_classroom_command(classroom)
+
+
+def enrollment_command():
+    class_size_dict = {}
+
+    try:
+        file = open("list.txt", 'r')
+    except IOError:
+        exit(1)
+
+    for line in file:
+        data = check_txt_file(line)
+        if int(data[3]) not in class_size_dict:
+            class_size_dict[int(data[3])] = 1
+        else:
+            class_size_dict[int(data[3])] += 1
+    file.close()
+
+    for key in sorted(class_size_dict.keys()):
+        print(str(key) + ": " + str(class_size_dict[key]))
+
+
 def parseinstruction(userinput):
     parsed_input = userinput.split(":")
    
@@ -242,6 +323,10 @@ def parseinstruction(userinput):
     elif parsed_input[0] == "Q" or parsed_input[0] == "Quit":
         if len(parsed_input) == 1:
            exit(0)
+        return
+    elif parsed_input[0] == "E" or parsed_input[0] == "Enrollment":
+        if len(parsed_input) == 1:
+            enrollment_command()
         return
 
     if len(parsed_input) != 2:
@@ -258,6 +343,12 @@ def parseinstruction(userinput):
         bus_command(parsed_input[1])
     elif command == "A" or command == "Average":
         average_command(parsed_input[1])
+    elif command == "N":
+        students_in_classroom_command(parsed_input[1])
+    elif command == "NT":
+        teacher_with_classroom_command(parsed_input[1])
+    elif command == "GT":
+        teacher_with_grade_command(parsed_input[1])
     else:
         return
 
