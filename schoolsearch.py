@@ -3,21 +3,43 @@
 #Lab 1-2 
 def check_txt_file(line):
     data = line.strip().split(",")
-    if len(data) != 8:
+    if len(data) != 6:
         exit(1)
     return data
 
 
+def check_teachers_file(line):
+    data = line.strip().split(",")
+    if len(data) != 3:
+        exit(1)
+    return data
+
+
+def find_teacher(classroom):
+    try:
+        file = open("teachers.txt", 'r')
+    except IOError:
+        exit(1)
+
+    for line in file:
+        data = check_teachers_file(line)
+        if classroom == data[2].strip():
+            return data
+
+    print("Could not find teacher")
+    exit(1)
+
+
 def student_command_with_b(last_name):
     try:
-        file = open("students.txt", 'r')
+        file = open("list.txt", 'r')
     except IOError:
         exit(1)
 
     for line in file:
         data = check_txt_file(line)
         if data[0] == last_name:
-            print(data[0]+","+data[1]+","+data[4])
+            print(data[0].strip()+","+data[1].strip()+","+data[4].strip())
     file.close()
 
 
@@ -29,8 +51,9 @@ def student_command_without_b(last_name):
 
     for line in file:
         data = check_txt_file(line)
-        if data[0] == last_name:
-            print(data[0]+","+data[1]+","+data[2]+","+data[3]+","+data[6]+","+data[7])
+        if data[0].strip() == last_name:
+            teacher = find_teacher(data[3].strip())
+            print(data[0].strip()+","+data[1].strip()+","+data[2].strip()+","+data[3].strip()+","+teacher[0].strip()+","+teacher[1].strip())
     file.close()
 
 
@@ -45,6 +68,18 @@ def student_command(user_input):
             student_command_with_b(parsed_input[0])
 
 
+def find_student(classroom):
+    try:
+        file = open("list.txt", 'r')
+    except IOError:
+        exit(1)
+
+    for line in file:
+        data = check_txt_file(line)
+        if classroom == data[3].strip():
+            print(data[0].strip() + "," + data[1].strip())
+
+
 def teacher_command(user_input):
     parsed_input = user_input.strip().split(" ")
     if len(parsed_input) != 1:
@@ -53,22 +88,21 @@ def teacher_command(user_input):
     last_name = parsed_input[0]
 
     try:
-        file = open("students.txt", 'r')
+        file = open("teachers.txt", 'r')
     except IOError:
         exit(1)
 
     for line in file:
-        data = check_txt_file(line)
-        if data[6] == last_name:
-            print(data[0]+","+data[1])
+        data = check_teachers_file(line)
+        if data[0].strip() == last_name:
+            find_student(data[2].strip())
     file.close()
-
 
 def grade_command_with_gpa(input):
     student_list = []
     gpa = 0.0
     try:
-        file = open("students.txt", 'r')
+        file = open("list.txt", 'r')
     except IOError:
         exit(1)
 
@@ -79,13 +113,15 @@ def grade_command_with_gpa(input):
         gpa = 0.0
         for line in file:
             data = check_txt_file(line)
-            if grade == data[2]:
+            if grade == data[2].strip():
                 if float(data[5]) > gpa:
                     gpa = float(data[5])
                     student_list.clear()
-                    student_list.append(data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4])
+                    teacher = find_teacher(data[3].strip())
+                    student_list.append(data[0].strip() + "," + data[1].strip() + "," + data[5].strip() + "," + teacher[0].strip() + "," + teacher[1].strip() + "," + data[4].strip())
                 elif float(data[5]) == gpa:
-                    student_list.append(data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4])
+                    teacher = find_teacher(data[3].strip())
+                    student_list.append(data[0].strip() + "," + data[1].strip() + "," + data[5].strip() + "," + teacher[0].strip() + "," + teacher[1].strip() + "," + data[4].strip())
         for student in student_list:
             print(student)
 
@@ -93,13 +129,15 @@ def grade_command_with_gpa(input):
         gpa = 10.0
         for line in file:
             data = check_txt_file(line)
-            if grade == data[2]:
+            if grade == data[2].strip():
                 if float(data[5]) < gpa:
                     gpa = float(data[5])
                     student_list.clear()
-                    student_list.append(data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4])
+                    teacher = find_teacher(data[3].strip())
+                    student_list.append(data[0].strip() + "," + data[1].strip() + "," + data[5].strip() + "," + teacher[0].strip() + "," + teacher[1].strip() + "," + data[4].strip())
                 elif float(data[5]) == gpa:
-                    student_list.append(data[0] + "," + data[1] + "," + data[5] + "," + data[6] + "," + data[7] + "," + data[4])
+                    teacher = find_teacher(data[3].strip())
+                    student_list.append(data[0].strip() + "," + data[1].strip() + "," + data[5].strip() + "," + teacher[0].strip() + "," + teacher[1].strip() + "," + data[4].strip())
         for student in student_list:
             print(student)
 
@@ -116,14 +154,14 @@ def grade_command(user_input):
 
     if len(parsed_input) == 1:
         try:
-            file = open("students.txt", 'r')
+            file = open("list.txt", 'r')
         except IOError:
             exit(1)
 
         for line in file:
             data = check_txt_file(line)
-            if data[2] == grade:
-                print(data[0] + "," + data[1])
+            if data[2].strip() == grade:
+                print(data[0].strip() + "," + data[1].strip())
         file.close()
 
     if len(parsed_input) == 2:
@@ -138,14 +176,14 @@ def bus_command(user_input):
     bus = parsed_input[0]
 
     try:
-        file = open("students.txt", 'r')
+        file = open("list.txt", 'r')
     except IOError:
         exit(1)
 
     for line in file:
         data = check_txt_file(line)
-        if data[4] == bus:
-            print(data[0]+", "+data[1] + "," + data[2] + "," + data[3])
+        if data[4].strip() == bus:
+            print(data[0].strip()+", "+data[1].strip() + "," + data[2].strip() + "," + data[3].strip())
     file.close()
 
 
@@ -160,13 +198,13 @@ def average_command(user_input):
     num_students = 0
 
     try:
-        file = open("students.txt", 'r')
+        file = open("list.txt", 'r')
     except IOError:
         exit(1)
 
     for line in file:
         data = check_txt_file(line)
-        if data[2] == grade:
+        if data[2].strip() == grade:
             total_gpa += float(data[5])
             num_students += 1
     file.close()
@@ -179,7 +217,7 @@ def info_command():
     info_dict = {}
 
     try:
-        file = open("students.txt", 'r')
+        file = open("list.txt", 'r')
     except IOError:
         exit(1)
 
