@@ -232,6 +232,81 @@ def info_command():
     for key in sorted(info_dict.keys()):
         print(str(key) + ": " + str(info_dict[key]))
 
+def grade_analytics(analytics_dict):
+   try:
+      file = open("list.txt", 'r')
+   except IOError:
+      exit(1)
+   for line in file:
+      data = check_txt_file(line)
+      if int(data[2]) not in analytics_dict:
+         analytics_dict[int(data[2])] = [1, float(data[5])]
+      else:
+         total = 0.00
+         analytics_dict[int(data[2])][0] += 1
+         analytics_dict[int(data[2])][1] = float(analytics_dict[int(data[2])][1]) + float(data[5])
+   file.close()
+   return analytics_dict
+
+def bus_analytics(analytics_dict):
+   try:
+      file = open("list.txt", 'r')
+   except IOError:
+      exit(1)
+   for line in file:
+      data = check_txt_file(line)
+      if int(data[4]) not in analytics_dict:
+         analytics_dict[int(data[4])] = [1, float(data[5])]
+      else:
+         total = 0.00
+         analytics_dict[int(data[4])][0] += 1
+         analytics_dict[int(data[4])][1] = float(analytics_dict[int(data[4])][1]) + float(data[5])
+   file.close()
+   return analytics_dict
+def teacher_analytics(analytics_dict):
+   try: 
+      file = open("list.txt", 'r')
+   except IOError:
+      exit(1)
+   for line in file:
+      data = check_txt_file(line)
+      if int(data[3]) not in analytics_dict:
+         analytics_dict[int(data[3])] = [1, float(data[5])]
+      else:   
+         analytics_dict[int(data[3])][0] += 1
+         analytics_dict[int(data[3])][1] = float(analytics_dict[int(data[3])][1]) + float(data[5])
+   file.close()
+   return analytics_dict
+def find_teacher(key, analytics_dict):
+   try:
+      file = open("teachers.txt", 'r')
+   except IOError:
+      exit(1)
+   for line in file:
+      data = check_teachers_file(line)
+      if key == int(data[2]):
+         print(str(data[0]) + ": " + str(round(analytics_dict[key][1]/analytics_dict[key][0], 2)))
+         return
+   file.close()
+def analytics(user_input):
+   parsed_input = user_input.strip().split(" ")
+   if len(parsed_input) != 1:
+      return
+   analytics_dict = {}
+   if (parsed_input[0] == "G"):
+      analytics_dict = grade_analytics(analytics_dict)
+      for key in sorted(analytics_dict.keys()):
+         print(str(key) + ": " + str(round(analytics_dict[key][1]/analytics_dict[key][0], 2)))
+   elif (parsed_input[0] == "B"):
+      analytics_dict = bus_analytics(analytics_dict)
+      for key in sorted(analytics_dict.keys()):
+         print(str(key) + ": " + str(round(analytics_dict[key][1]/analytics_dict[key][0], 2)))
+   elif (parsed_input[0] == "T"):
+      analytics_dict = teacher_analytics(analytics_dict)
+      for key in sorted(analytics_dict.keys()):
+         find_teacher(key, analytics_dict)
+         #print(str(key) + ": " + str(round(analytics_dict[key][1]/analytics_dict[key][0], 2)))
+   return
 def parseinstruction(userinput):
     parsed_input = userinput.split(":")
    
@@ -258,6 +333,8 @@ def parseinstruction(userinput):
         bus_command(parsed_input[1])
     elif command == "A" or command == "Average":
         average_command(parsed_input[1])
+    elif command == "Analytics":
+        analytics(parsed_input[1])
     else:
         return
 
