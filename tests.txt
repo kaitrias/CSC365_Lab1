@@ -264,21 +264,21 @@ TC-33
 Test Requirement NR1
 short form, existing classroom number
 expected output:
-DURAND, CARLEE
+DURAND,CARLEE
 N: 101
 
 TC-34
 Test Requirement NR2
 short form, existing teacher
 expected output:
-COOL, REUBEN
+COOL,REUBEN
 NT: 101
 
 TC-35
 Test Requirement NR3
 short form, existing grade
 expected output:
-FALKER, ADOLPH
+FALKER,ADOLPH
 GT: 1
 
 TC-36
@@ -298,3 +298,47 @@ expected output:
 111: 9 students
 112: 8 students
 E
+
+Additional Functionality: Analytics
+--
+TC-37
+Test Requirement NR5
+long form, existing grades
+expected output:
+Grade 1:  
+Grade 2:
+Grade 3:
+Grade 4:
+Grade 5:
+Grade 6:
+Analytics: G
+
+TC-38
+Test Requirement NR5
+long form, existing teachers
+expected output:
+COOL,REUBEN:
+KERBS,BENITO:
+FALKER,ADOLPH:
+STEIB,GALE:
+HANTZ,JED:
+BODZIONY,LUZ:
+FAFARD,ROCIO:
+HAMER,GAVIN:
+GAMBREL,JAE:
+ALPERT,JONATHAN:
+NISTENDIRK,NANCY:
+CHIONCHIO,PERLA:
+Analytics: T
+
+TC-39
+Test Requirement NR5
+long form, existing bus routes
+expected output:
+Bus Route 51:
+Bus Route 52:
+Bus Route 53:
+Bus Route 54:
+Bus Route 55:
+Bus Route 56:
+Analytics: B
