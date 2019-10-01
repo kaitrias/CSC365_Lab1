@@ -15,19 +15,23 @@ def check_teachers_file(line):
     return data
 
 
-def find_teacher(classroom):
+def find_teachers(classroom):
     try:
         file = open("teachers.txt", 'r')
     except IOError:
         exit(1)
 
+    teachers = []
+
     for line in file:
         data = check_teachers_file(line)
         if classroom == data[2].strip():
-            return data
+            teachers.append(data)
 
-    print("Could not find teacher")
-    exit(1)
+    if len(teachers) == 0:
+        print("Could not find teacher")
+        exit(1)
+    return teachers
 
 
 def student_command_with_b(last_name):
@@ -52,8 +56,12 @@ def student_command_without_b(last_name):
     for line in file:
         data = check_txt_file(line)
         if data[0].strip() == last_name:
-            teacher = find_teacher(data[3].strip())
-            print(data[0].strip()+","+data[1].strip()+","+data[2].strip()+","+data[3].strip()+","+teacher[0].strip()+","+teacher[1].strip())
+            teachers = find_teachers(data[3].strip())
+            print(data[0].strip()+","+data[1].strip()+","+data[2].strip()+","+data[3].strip()+",", end = "")
+            for teacher in teachers:
+                print(teacher[0].strip() + "," + teacher[1].strip(), end = "")
+            print("\n", end = "")
+
     file.close()
 
 
@@ -117,11 +125,19 @@ def grade_command_with_gpa(input):
                 if float(data[5]) > gpa:
                     gpa = float(data[5])
                     student_list.clear()
-                    teacher = find_teacher(data[3].strip())
-                    student_list.append(data[0].strip() + "," + data[1].strip() + "," + data[5].strip() + "," + teacher[0].strip() + "," + teacher[1].strip() + "," + data[4].strip())
+                    teachers = find_teachers(data[3].strip())
+                    string = data[0].strip() + "," + data[1].strip() + "," + data[5].strip()
+                    for teacher in teachers:
+                        string = string + "," + teacher[0].strip() + "," + teacher[1].strip()
+                    string = string + "," + data[4].strip()
+                    student_list.append(string)
                 elif float(data[5]) == gpa:
-                    teacher = find_teacher(data[3].strip())
-                    student_list.append(data[0].strip() + "," + data[1].strip() + "," + data[5].strip() + "," + teacher[0].strip() + "," + teacher[1].strip() + "," + data[4].strip())
+                    teachers = find_teachers(data[3].strip())
+                    string = data[0].strip() + "," + data[1].strip() + "," + data[5].strip()
+                    for teacher in teachers:
+                        string = string + "," + teacher[0].strip() + "," + teacher[1].strip()
+                    string = string + "," + data[4].strip()
+                    student_list.append(string)
         for student in student_list:
             print(student)
 
@@ -133,11 +149,20 @@ def grade_command_with_gpa(input):
                 if float(data[5]) < gpa:
                     gpa = float(data[5])
                     student_list.clear()
-                    teacher = find_teacher(data[3].strip())
-                    student_list.append(data[0].strip() + "," + data[1].strip() + "," + data[5].strip() + "," + teacher[0].strip() + "," + teacher[1].strip() + "," + data[4].strip())
+                    teachers = find_teachers(data[3].strip())
+                    string = data[0].strip() + "," + data[1].strip() + "," + data[5].strip()
+                    for teacher in teachers:
+                        string = string + "," + teacher[0].strip() + "," + teacher[1].strip()
+                    string = string + "," + data[4].strip()
+                    student_list.append(string)
                 elif float(data[5]) == gpa:
-                    teacher = find_teacher(data[3].strip())
-                    student_list.append(data[0].strip() + "," + data[1].strip() + "," + data[5].strip() + "," + teacher[0].strip() + "," + teacher[1].strip() + "," + data[4].strip())
+                    teachers = find_teachers(data[3].strip())
+                    string = data[0].strip() + "," + data[1].strip() + "," + data[5].strip()
+                    for teacher in teachers:
+                        string = string + "," + teacher[0].strip() + "," + teacher[1].strip()
+                    string = string + "," + data[4].strip()
+                    student_list.append(string)
+
         for student in student_list:
             print(student)
 
