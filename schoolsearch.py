@@ -310,7 +310,7 @@ def find_teacher(key, analytics_dict):
    for line in file:
       data = check_teachers_file(line)
       if key == int(data[2]):
-         print(str(data[0]) + ": " + str(round(analytics_dict[key][1]/analytics_dict[key][0], 2)))
+         print(str(data[0].strip())+","+str(data[1].strip()) + ": " + str(round(analytics_dict[key][1]/analytics_dict[key][0], 2)))
          return
    file.close()
 def analytics(user_input):
@@ -321,7 +321,7 @@ def analytics(user_input):
    if (parsed_input[0] == "G"):
       analytics_dict = grade_analytics(analytics_dict)
       for key in sorted(analytics_dict.keys()):
-         print(str(key) + ": " + str(round(analytics_dict[key][1]/analytics_dict[key][0], 2)))
+         print("Grade " + str(key) + ": " + str(round(analytics_dict[key][1]/analytics_dict[key][0], 2)))
    elif (parsed_input[0] == "B"):
       analytics_dict = bus_analytics(analytics_dict)
       for key in sorted(analytics_dict.keys()):
