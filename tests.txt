@@ -285,18 +285,18 @@ TC-36
 Test Requirement NR4
 short form, existing classroom
 expected output:
-101: 1 students
-102: 5 students
-103: 2 students
-104: 2 students
-105: 6 students
-106: 2 students
-107: 7 students
-108: 11 students
-109: 5 students
-110: 2 students
-111: 9 students
-112: 8 students
+101: 1 
+102: 5 
+103: 2 
+104: 2 
+105: 6 
+106: 2 
+107: 7 
+108: 11 
+109: 5 
+110: 2 
+111: 9 
+112: 8 
 E
 
 Additional Functionality: Analytics

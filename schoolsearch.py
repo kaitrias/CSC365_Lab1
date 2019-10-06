@@ -321,7 +321,7 @@ def analytics(user_input):
    if (parsed_input[0] == "G"):
       analytics_dict = grade_analytics(analytics_dict)
       for key in sorted(analytics_dict.keys()):
-         print("Grade " + str(key) + ": " + str(round(analytics_dict[key][1]/analytics_dict[key][0], 2)))
+         print(str(key) + ": " + str(round(analytics_dict[key][1]/analytics_dict[key][0], 2)))
    elif (parsed_input[0] == "B"):
       analytics_dict = bus_analytics(analytics_dict)
       for key in sorted(analytics_dict.keys()):
