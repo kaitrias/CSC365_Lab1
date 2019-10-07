@@ -59,7 +59,7 @@ def student_command_without_b(last_name):
             teachers = find_teachers(data[3].strip())
             print(data[0].strip()+","+data[1].strip()+","+data[2].strip()+","+data[3].strip()+",", end = "")
             for teacher in teachers:
-                print(teacher[0].strip() + "," + teacher[1].strip(), end = "")
+                print( "," + teacher[0].strip() + "," + teacher[1].strip(), end = "")
             print("\n", end = "")
 
     file.close()
